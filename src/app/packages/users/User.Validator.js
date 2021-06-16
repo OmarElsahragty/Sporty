@@ -31,6 +31,7 @@ export const loginValidator = yup.object().shape({ phone, password });
 
 export const registrationValidator = yup.object().shape({
   name,
+  phone,
   gender,
   picture,
   dateOfBirth,
