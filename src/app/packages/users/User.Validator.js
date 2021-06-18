@@ -15,7 +15,10 @@ const picture = yup.string().nullable();
 
 const dateOfBirth = yup.string().required(LocaleKeys.REQUIRED_DATE_OF_BIRTH);
 
-const phone = yup.string().required(LocaleKeys.REQUIRED_PHONE);
+const email = yup
+  .string()
+  .email(LocaleKeys.INVALID_EMAIL)
+  .required(LocaleKeys.REQUIRED_EMAIL);
 
 const password = yup
   .string()
@@ -27,11 +30,11 @@ const password = yup
 
 // const points = yup.string().nullable();
 
-export const loginValidator = yup.object().shape({ phone, password });
+export const loginValidator = yup.object().shape({ email, password });
 
 export const registrationValidator = yup.object().shape({
   name,
-  phone,
+  email,
   gender,
   picture,
   dateOfBirth,

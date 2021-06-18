@@ -26,12 +26,12 @@ export default (connection, DataTypes) =>
         type: DataTypes.DATEONLY,
         allowNull: false,
       },
-      phone: {
-        type: DataTypes.STRING(25),
+      email: {
+        type: DataTypes.STRING(255),
         allowNull: false,
         unique: {
           args: true,
-          msg: LocaleKeys.USED_PHONE,
+          msg: LocaleKeys.USED_EMAIL,
         },
       },
       password: {

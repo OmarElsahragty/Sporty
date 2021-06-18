@@ -8,13 +8,13 @@ import LocaleKeys from "../../locales";
 
 export const checkUser = async (
   id = null,
-  phone = null,
+  email = null,
   skipAdminCheck = true
 ) => {
   try {
     const user = await Database.Users.findOne({
       where: {
-        [Op.and]: [{ id }, { phone }],
+        [Op.and]: [{ id }, { email }],
       },
       attributes: ["id"],
     });
@@ -39,7 +39,7 @@ export const create = async ({ password, ...args }) => {
     delete user.dataValues.password;
 
     const token = jwt.sign(
-      { id: user.id, phone: user.phone },
+      { id: user.id, email: user.email },
       Config.JwtSecret,
       {
         expiresIn: Config.JwtLifeTime,
@@ -54,16 +54,16 @@ export const create = async ({ password, ...args }) => {
   }
 };
 
-export const authenticate = async ({ phone, password }) => {
+export const authenticate = async ({ email, password }) => {
   try {
     const user = await Database.Users.findOne({
       where: {
-        phone,
+        email,
       },
     });
     if (user && bcrypt.compareSync(password, user.password)) {
       const token = jwt.sign(
-        { id: user.id, phone: user.phone },
+        { id: user.id, email: user.email },
         Config.JwtSecret,
         {
           expiresIn: Config.JwtLifeTime,

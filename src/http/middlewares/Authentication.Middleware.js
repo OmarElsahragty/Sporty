@@ -15,7 +15,7 @@ export const Authenticate = async (req, _, next) => {
 
     const isAuthenticated = await usersPackage.checkUser(
       decoded.id,
-      decoded.phone
+      decoded.email
     );
 
     if (!isAuthenticated.data) {
@@ -38,7 +38,7 @@ export const isAdmin = async (req, _, next) => {
 
     const isAuthenticated = await usersPackage.checkUser(
       decoded.id,
-      decoded.phone,
+      decoded.email,
       false
     );
 

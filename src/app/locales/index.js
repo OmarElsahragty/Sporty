@@ -11,15 +11,15 @@ export default {
   USER_404: "user-not-found",
   WRONG_CREDENTIALS: "wrong-credentials",
 
-  USED_PHONE: "used-phone",
-
   REQUIRED_NAME: "required-name",
   INVALID_NAME: "invalid-name",
 
   REQUIRED_PASSWORD: "required-password",
   INVALID_PASSWORD: "invalid-password",
 
-  REQUIRED_PHONE: "required-phone",
+  USED_EMAIL: "used-email",
+  INVALID_EMAIL: "invalid-email",
+  REQUIRED_EMAIL: "required-email",
 
   REQUIRED_DATE_OF_BIRTH: "required-dateOfBirth",
 
