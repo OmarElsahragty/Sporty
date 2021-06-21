@@ -68,7 +68,7 @@ export const authenticate = async ({ email, password }) => {
       where: {
         email,
       },
-      attributes: ["id", "email"],
+      attributes: ["id", "email", "password"],
     });
     if (user && bcrypt.compareSync(password, user.password)) {
       const token = jwt.sign(
