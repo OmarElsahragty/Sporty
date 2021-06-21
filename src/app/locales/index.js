@@ -34,4 +34,5 @@ export default {
   ROLE_EXIST: "role-exist",
 
   GROUP_EXIST: "group-exist",
+  EVENT_EXIST: "event-exist",
 };

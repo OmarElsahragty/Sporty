@@ -14,6 +14,9 @@ const Groups = Models.Groups(connection, Sequelize.DataTypes);
 const GroupRoles = Models.GroupRoles(connection, Sequelize.DataTypes);
 const GroupMembers = Models.GroupMembers(connection, Sequelize.DataTypes);
 
+const Events = Models.Events(connection, Sequelize.DataTypes);
+const EventMembers = Models.EventMembers(connection, Sequelize.DataTypes);
+
 const Database = {
   connection,
 
@@ -27,6 +30,9 @@ const Database = {
   Groups,
   GroupRoles,
   GroupMembers,
+
+  Events,
+  EventMembers,
 };
 
 relationships(Database);
