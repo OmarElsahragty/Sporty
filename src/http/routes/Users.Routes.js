@@ -5,6 +5,8 @@ import { usersPackage } from "../../app/packages";
 
 const router = express.Router();
 
+router.get("/profile", Authenticate, usersController.profile);
+
 router.post(
   "/login",
   validate(usersPackage.validation.loginValidator),

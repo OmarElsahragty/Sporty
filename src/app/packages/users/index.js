@@ -1,4 +1,5 @@
 export {
+  profile,
   authenticate,
   create,
   update,
