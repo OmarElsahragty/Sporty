@@ -2,7 +2,7 @@ import LocaleKeys from "../../../app/locales";
 
 export default (connection, DataTypes) =>
   connection.define(
-    "Cites",
+    "GroupRoles",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -15,7 +15,7 @@ export default (connection, DataTypes) =>
         allowNull: false,
         unique: {
           args: true,
-          msg: LocaleKeys.CITY_EXIST,
+          msg: LocaleKeys.ROLE_EXIST,
         },
       },
       englishName: {
@@ -23,13 +23,17 @@ export default (connection, DataTypes) =>
         allowNull: false,
         unique: {
           args: true,
-          msg: LocaleKeys.CITY_EXIST,
+          msg: LocaleKeys.ROLE_EXIST,
         },
+      },
+      permissions: {
+        type: DataTypes.JSONB,
+        allowNull: false,
       },
     },
     {
       connection,
-      tableName: "Cites",
+      tableName: "GroupRoles",
       schema: "public",
       timestamps: true,
     }

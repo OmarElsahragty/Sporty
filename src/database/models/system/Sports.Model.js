@@ -11,7 +11,7 @@ export default (connection, DataTypes) =>
         primaryKey: true,
       },
       arabicName: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(100),
         allowNull: false,
         unique: {
           args: true,
@@ -19,7 +19,7 @@ export default (connection, DataTypes) =>
         },
       },
       englishName: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(100),
         allowNull: false,
         unique: {
           args: true,

@@ -30,4 +30,8 @@ export default {
   REGION_EXIST: "region-exist",
 
   SPORT_EXIST: "sport-exist",
+
+  ROLE_EXIST: "role-exist",
+
+  GROUP_EXIST: "group-exist",
 };

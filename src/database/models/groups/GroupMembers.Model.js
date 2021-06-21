@@ -1,8 +1,6 @@
-import LocaleKeys from "../../../app/locales";
-
 export default (connection, DataTypes) =>
   connection.define(
-    "Regions",
+    "GroupMembers",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -10,34 +8,34 @@ export default (connection, DataTypes) =>
         allowNull: false,
         primaryKey: true,
       },
-      cityId: {
+      groupId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: "Cites",
+          model: "Groups",
           key: "id",
         },
       },
-      arabicName: {
-        type: DataTypes.STRING(100),
+      userId: {
+        type: DataTypes.INTEGER,
         allowNull: false,
-        unique: {
-          args: true,
-          msg: LocaleKeys.REGION_EXIST,
+        references: {
+          model: "Users",
+          key: "id",
         },
       },
-      englishName: {
-        type: DataTypes.STRING(100),
+      groupRoleId: {
+        type: DataTypes.INTEGER,
         allowNull: false,
-        unique: {
-          args: true,
-          msg: LocaleKeys.REGION_EXIST,
+        references: {
+          model: "GroupRoles",
+          key: "id",
         },
       },
     },
     {
       connection,
-      tableName: "Regions",
+      tableName: "GroupMembers",
       schema: "public",
       timestamps: true,
     }
