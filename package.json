@@ -8,7 +8,8 @@
     "start": "NODE_ENV=production node -r esm .",
     "dev": "NODE_ENV=development nodemon -r esm .",
     "init": "NODE_ENV=Initialization node -r esm ./scripts/Installation",
-    "rest": "NODE_ENV=Rest node -r esm ./scripts/Installation"
+    "rest": "NODE_ENV=Rest node -r esm ./scripts/Installation",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@hapi/boom": "^9.1.2",

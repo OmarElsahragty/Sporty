@@ -1,0 +1,1 @@
+Models generator command     ------>     sequelize-auto -h 34.123.96.243 -d databaseName -u postgres -x password -p 5432 --dialect postgres -o ./docs/sequelize-auto

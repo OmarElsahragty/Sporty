@@ -25,4 +25,9 @@ export default {
 
   REQUIRED_GENDER: "required-gender",
   INVALID_GENDER: "invalid-gender",
+
+  CITY_EXIST: "city-exist",
+  REGION_EXIST: "region-exist",
+
+  SPORT_EXIST: "sport-exist",
 };

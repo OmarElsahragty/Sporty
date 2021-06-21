@@ -1,4 +1,4 @@
-import LocaleKeys from "../../app/locales";
+import LocaleKeys from "../../../app/locales";
 
 export default (connection, DataTypes) =>
   connection.define(
@@ -52,6 +52,7 @@ export default (connection, DataTypes) =>
     {
       connection,
       tableName: "Users",
+      schema: "public",
       timestamps: true,
     }
   );
