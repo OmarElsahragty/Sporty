@@ -27,6 +27,18 @@ export const checkUser = async (
   }
 };
 
+export const profile = async (userId) => {
+  try {
+    const user = await Database.Users.findByPk(userId, {
+      attributes: { exclude: ["password", "createdAt", "updatedAt"] },
+    });
+
+    return Protocols.appResponse({ data: user });
+  } catch (err) {
+    return Protocols.appResponse({ err });
+  }
+};
+
 export const create = async ({ password, ...args }) => {
   const hashedPassword = bcrypt.hashSync(password, 10);
 
@@ -36,8 +48,6 @@ export const create = async ({ password, ...args }) => {
       ...args,
     });
 
-    delete user.dataValues.password;
-
     const token = jwt.sign(
       { id: user.id, email: user.email },
       Config.JwtSecret,
@@ -46,9 +56,7 @@ export const create = async ({ password, ...args }) => {
       }
     );
 
-    const data = { token, user };
-
-    return Protocols.appResponse({ data });
+    return Protocols.appResponse({ data: { token } });
   } catch (err) {
     return Protocols.appResponse({ err });
   }
@@ -60,6 +68,7 @@ export const authenticate = async ({ email, password }) => {
       where: {
         email,
       },
+      attributes: ["id", "email", "password"],
     });
     if (user && bcrypt.compareSync(password, user.password)) {
       const token = jwt.sign(
@@ -71,7 +80,7 @@ export const authenticate = async ({ email, password }) => {
       );
 
       delete user.dataValues.password;
-      return Protocols.appResponse({ data: { token, user } });
+      return Protocols.appResponse({ data: { token } });
     } else {
       return Protocols.appResponse({ err: LocaleKeys.WRONG_CREDENTIALS });
     }
@@ -85,7 +94,7 @@ export const update = async (args, id) => {
     const updatedUser = await Database.Users.update(args, {
       where: { id },
       returning: true,
-      attributes: { exclude: ["password"] },
+      attributes: { exclude: ["password", "createdAt", "updatedAt"] },
     });
 
     return Protocols.appResponse({ data: updatedUser[1] });
@@ -96,7 +105,9 @@ export const update = async (args, id) => {
 
 export const changePassword = async ({ oldPassword, newPassword }, userId) => {
   try {
-    const user = await Database.Users.findByPk(userId);
+    const user = await Database.Users.findByPk(userId, {
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+    });
 
     if (user && bcrypt.compareSync(oldPassword, user.password)) {
       user.password = bcrypt.hashSync(newPassword, 10);
