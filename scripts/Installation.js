@@ -39,7 +39,7 @@ Database.connection
         dateOfBirth: "1996-08-26",
         email: "moustafatohamy96@gmail.com",
         password:
-          "$2a$10$zFBXhgDpTpwBVa3Kc2br9OdoRcWqoEDDEq9PSasWqpICIAlBTA6m6", // ! Sportyzporty123
+          "$2a$10$xoqsfAKV6b2w8dsvg0t5M.0oQclLPzatAiMDGQKGCvzUL6XIcNQKu", // ! Sportyzporty123!@#
         isAdmin: true,
       },
     ]);
