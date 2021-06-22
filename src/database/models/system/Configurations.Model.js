@@ -29,6 +29,6 @@ export default (connection, DataTypes) =>
       connection,
       tableName: "Configurations",
       schema: "public",
-      timestamps: true,
+      timestamps: false,
     }
   );

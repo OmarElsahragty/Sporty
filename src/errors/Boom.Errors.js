@@ -10,6 +10,10 @@ class BoomHttpErrors {
     return boom.unauthorized(message);
   }
 
+  forbidden(message) {
+    return boom.forbidden(message);
+  }
+
   badData(message) {
     return boom.badData(message);
   }

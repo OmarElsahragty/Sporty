@@ -2,7 +2,7 @@ import Dotenv from "dotenv";
 
 Dotenv.config();
 
-export default {
+export default Object.freeze({
   Port: process.env.PORT * 1,
 
   SentryDNS: process.env.SENTRY_DNS,
@@ -38,4 +38,4 @@ export default {
   //   Website: process.env.APP_WEBSITE,
   //   Mail: process.env.APP_MAIL,
   // },
-};
+});

@@ -1,6 +1,5 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { Op } from "sequelize";
 import Database from "../../../database";
 import { Protocols } from "../../helpers";
 import Config from "../../../../config";
@@ -13,10 +12,8 @@ export const checkUser = async (
 ) => {
   try {
     const user = await Database.Users.findOne({
-      where: {
-        [Op.and]: [{ id }, { email }],
-      },
-      attributes: ["id"],
+      where: { id, email },
+      attributes: ["id", "isAdmin"],
     });
 
     return Protocols.appResponse({
