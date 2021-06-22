@@ -21,18 +21,10 @@ export default (connection, DataTypes) =>
       arabicName: {
         type: DataTypes.STRING(50),
         allowNull: false,
-        unique: {
-          args: true,
-          msg: LocaleKeys.REGION_EXIST,
-        },
       },
       englishName: {
         type: DataTypes.STRING(50),
         allowNull: false,
-        unique: {
-          args: true,
-          msg: LocaleKeys.REGION_EXIST,
-        },
       },
     },
     {
@@ -40,5 +32,15 @@ export default (connection, DataTypes) =>
       tableName: "Regions",
       schema: "public",
       timestamps: true,
+      paranoid: true,
+      indexes: [
+        {
+          unique: {
+            args: true,
+            msg: LocaleKeys.REGION_EXIST,
+          },
+          fields: ["arabicName", "englishName"],
+        },
+      ],
     }
   );

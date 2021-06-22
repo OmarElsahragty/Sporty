@@ -1,6 +1,6 @@
 import cors from "cors";
 import express from "express";
-import { usersRoutes } from "./routes";
+import { usersRoutes, SystemRoutes } from "./routes";
 import { I18next, ErrorHandler } from "./middlewares";
 
 class Server {
@@ -18,6 +18,7 @@ class Server {
       .disable("x-powered-by");
 
     this.app.use("/", usersRoutes);
+    this.app.use("/", SystemRoutes);
 
     this.app.use(ErrorHandler);
   }

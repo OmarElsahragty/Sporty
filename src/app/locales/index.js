@@ -1,8 +1,9 @@
-export default {
+export default Object.freeze({
   OK: "ok",
   AND: "and",
   SERVER_ERROR: "server-error",
 
+  FORBIDDEN: "forbidden",
   UNAUTHORIZED: "unauthorized",
   NO_TOKEN: "no-token",
 
@@ -28,6 +29,7 @@ export default {
 
   CITY_EXIST: "city-exist",
   REGION_EXIST: "region-exist",
+  CITY_DOES_NOT_EXIST: "city-does-not-exist",
 
   SPORT_EXIST: "sport-exist",
-};
+});
