@@ -12,8 +12,11 @@
   "user-not-found": "User not found",
   "wrong-credentials": "wrong credentials",
 
-  "required-name": "The name is required",
-  "invalid-name": "The name must contain at least 3 alphabetic characters, and a maximum of 30 alphabetic characters",
+  "required-first-name": "The first name is required",
+  "invalid-first-name": "The first name must contain at least 3 alphabetic characters, and a maximum of 30 alphabetic characters",
+
+  "required-last-name": "The last name is required",
+  "invalid-last-name": "The last name must contain at least 3 alphabetic characters, and a maximum of 30 alphabetic characters",
 
   "required-password": "A password is required",
   "invalid-password": "The password must contain at least 8 characters, 1 number, 1 lower case character, 1 upper case character",

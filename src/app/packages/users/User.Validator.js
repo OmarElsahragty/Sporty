@@ -1,10 +1,15 @@
 import * as yup from "yup";
 import LocaleKeys from "../../locales";
 
-const name = yup
+const firstName = yup
   .string()
-  .required(LocaleKeys.REQUIRED_NAME)
-  .matches(/^[a-zA-Z\s]{3,30}.*$/, LocaleKeys.INVALID_NAME);
+  .required(LocaleKeys.REQUIRED_FIRST_NAME)
+  .matches(/^[a-zA-Z\s]{3,30}.*$/, LocaleKeys.INVALID_FIRST_NAME);
+
+const lastName = yup
+  .string()
+  .required(LocaleKeys.REQUIRED_LAST_NAME)
+  .matches(/^[a-zA-Z\s]{3,30}.*$/, LocaleKeys.INVALID_LAST_NAME);
 
 const gender = yup
   .mixed()
@@ -33,7 +38,8 @@ const password = yup
 export const loginValidator = yup.object().shape({ email, password });
 
 export const registrationValidator = yup.object().shape({
-  name,
+  firstName,
+  lastName,
   email,
   gender,
   picture,
@@ -42,7 +48,8 @@ export const registrationValidator = yup.object().shape({
 });
 
 export const modifyValidator = yup.object().shape({
-  name,
+  firstName,
+  lastName,
   gender,
   picture,
   dateOfBirth,

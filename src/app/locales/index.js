@@ -12,8 +12,11 @@ export default Object.freeze({
   USER_404: "user-not-found",
   WRONG_CREDENTIALS: "wrong-credentials",
 
-  REQUIRED_NAME: "required-name",
-  INVALID_NAME: "invalid-name",
+  REQUIRED_FIRST_NAME: "required-first-name",
+  INVALID_FIRST_NAME: "invalid-first-name",
+
+  REQUIRED_LAST_NAME: "required-last-name",
+  INVALID_LAST_NAME: "invalid-last-name",
 
   REQUIRED_PASSWORD: "required-password",
   INVALID_PASSWORD: "invalid-password",

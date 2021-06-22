@@ -10,7 +10,11 @@ export default (connection, DataTypes) =>
         allowNull: false,
         primaryKey: true,
       },
-      name: {
+      firstName: {
+        type: DataTypes.STRING(35),
+        allowNull: false,
+      },
+      lastName: {
         type: DataTypes.STRING(35),
         allowNull: false,
       },
