@@ -1,4 +1,4 @@
-import LocaleKeys from "../../../app/locales";
+// import LocaleKeys from "../../../app/locales";
 
 export default (connection, DataTypes) =>
   connection.define(
@@ -33,14 +33,14 @@ export default (connection, DataTypes) =>
       schema: "public",
       timestamps: true,
       paranoid: true,
-      indexes: [
-        {
-          unique: {
-            args: true,
-            msg: LocaleKeys.REGION_EXIST,
-          },
-          fields: ["arabicName", "englishName"],
-        },
-      ],
+      // indexes: [
+      //   {
+      //     unique: {
+      //       args: true,
+      //       msg: LocaleKeys.REGION_EXIST,
+      //     },
+      //     fields: ["arabicName", "englishName", "cityId"],
+      //   },
+      // ],
     }
   );

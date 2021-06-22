@@ -28,8 +28,10 @@ const email = yup
 const password = yup
   .string()
   .required(LocaleKeys.REQUIRED_PASSWORD)
+  .min(8, LocaleKeys.INVALID_PASSWORD)
+  .max(100, LocaleKeys.INVALID_PASSWORD)
   .matches(
-    /^(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[0-9])([A-Za-z0-9]{8,50}$)$/,
+    /^(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[0-9]).*$/,
     LocaleKeys.INVALID_PASSWORD
   );
 
