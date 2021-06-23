@@ -1004,22 +1004,6 @@ Database.connection
               englishName: "Shalateen",
             },
             { arabicName: "حلايب", englishName: "Halayeb" },
-            { arabicName: "الغردقة", englishName: "Hurghada" },
-            {
-              arabicName: "رأس غارب",
-              englishName: "Ras Ghareb",
-            },
-            { arabicName: "سفاجا", englishName: "Safaga" },
-            { arabicName: "القصير", englishName: "Quseer" },
-            {
-              arabicName: "مرسى علم",
-              englishName: "Marsa Alam",
-            },
-            {
-              arabicName: "الشلاتين",
-              englishName: "Shalateen",
-            },
-            { arabicName: "حلايب", englishName: "Halayeb" },
           ],
         },
         {
