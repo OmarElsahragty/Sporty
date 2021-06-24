@@ -18,7 +18,6 @@
   "required-last-name": "الاسم الأخير مطلوب",
   "invalid-last-name": "يجب أن يحتوي الاسم الأخير على 3 أحرف أبجدية على الأقل ، وبحد أقصى 30 حرفًا أبجديًا",
 
-
   "required-password": "مطلوب كلمة مرور",
   "invalid-password": "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل ورقم واحد وحرف صغير واحد وحرف واحد كبير",
 
@@ -26,6 +25,8 @@
   "invalid-email": "بريد إلكتروني خاطئ",
   "required-email": "البريد الإلكتروني مطلوب",
 
+  "invalid-dateOfBirth-syntax": "تاريخ الميلاد غير صالح",
+  "invalid-dateOfBirth": "تاريخ الميلاد غير صالح",
   "required-dateOfBirth": "تاريخ الميلاد مطلوب",
 
   "required-gender": "الجنس مطلوب",

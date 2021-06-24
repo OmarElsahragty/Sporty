@@ -25,6 +25,8 @@ export default Object.freeze({
   INVALID_EMAIL: "invalid-email",
   REQUIRED_EMAIL: "required-email",
 
+  INVALID_DATE_OF_BIRTH_SYNTAX: "invalid-dateOfBirth-syntax",
+  INVALID_DATE_OF_BIRTH: "invalid-dateOfBirth",
   REQUIRED_DATE_OF_BIRTH: "required-dateOfBirth",
 
   REQUIRED_GENDER: "required-gender",

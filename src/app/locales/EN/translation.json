@@ -25,6 +25,8 @@
   "invalid-email": "Invalid email",
   "required-email": "The email is required",
 
+  "invalid-dateOfBirth-syntax": "invalid date of birth syntax",
+  "invalid-dateOfBirth": "invalid date of birth",
   "required-dateOfBirth": "The date of birth is required",
 
   "required-gender": "The gender is required",
