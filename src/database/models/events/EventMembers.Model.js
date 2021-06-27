@@ -2,14 +2,9 @@ export default (connection, DataTypes) =>
   connection.define(
     "EventMembers",
     {
-      id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        allowNull: false,
-        primaryKey: true,
-      },
       eventId: {
         type: DataTypes.INTEGER,
+        primaryKey: true,
         allowNull: false,
         references: {
           model: "Events",
@@ -18,6 +13,7 @@ export default (connection, DataTypes) =>
       },
       userId: {
         type: DataTypes.INTEGER,
+        primaryKey: true,
         allowNull: false,
         references: {
           model: "Users",
