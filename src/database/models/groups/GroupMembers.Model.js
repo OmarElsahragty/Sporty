@@ -2,14 +2,9 @@ export default (connection, DataTypes) =>
   connection.define(
     "GroupMembers",
     {
-      id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        allowNull: false,
-        primaryKey: true,
-      },
       groupId: {
         type: DataTypes.INTEGER,
+        primaryKey: true,
         allowNull: false,
         references: {
           model: "Groups",
@@ -18,6 +13,7 @@ export default (connection, DataTypes) =>
       },
       userId: {
         type: DataTypes.INTEGER,
+        primaryKey: true,
         allowNull: false,
         references: {
           model: "Users",
@@ -26,6 +22,7 @@ export default (connection, DataTypes) =>
       },
       groupRoleId: {
         type: DataTypes.INTEGER,
+        primaryKey: true,
         allowNull: false,
         references: {
           model: "GroupRoles",
