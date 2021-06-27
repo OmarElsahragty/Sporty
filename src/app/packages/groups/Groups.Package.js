@@ -13,7 +13,7 @@ export const showGroupRoles = async ({
 }) => {
   try {
     const GroupRoles = await Database.GroupRoles.findAndCountAll({
-      attributes: { exclude: ["password", "createdAt", "updatedAt"] },
+      attributes: ["id", "arabicName", "englishName"],
       ...Pagination(
         { where: Filter(args), order: Sorting(args) },
         pageNumber,
@@ -96,7 +96,7 @@ export const deleteGroupRole = async (id) => {
 export const showGroups = async ({ pageNumber, pageSizeLimit, ...args }) => {
   try {
     const Groups = await Database.Groups.findAndCountAll({
-      attributes: ["id", "name", "gender", "interests"],
+      attributes: ["id", "name", "gender", "interests", "picture"],
       ...Pagination(
         { where: Filter(args), order: Sorting(args) },
         pageNumber,
