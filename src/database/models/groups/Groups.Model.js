@@ -45,5 +45,6 @@ export default (connection, DataTypes) =>
       tableName: "Groups",
       schema: "public",
       timestamps: true,
+      paranoid: true,
     }
   );

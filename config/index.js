@@ -26,6 +26,8 @@ export default Object.freeze({
   JwtSecret: process.env.JWT_SECRET,
   JwtLifeTime: process.env.JWT_LIFE_TIME,
 
+  CloudBucketURL: process.env.CLOUD_BUCKET_URL,
+
   Twilio: {
     AccountSID: process.env.TWILIO_ACCOUNT_SID,
     AuthToken: process.env.TWILIO_AUTH_TOKEN,

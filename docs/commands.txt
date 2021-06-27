@@ -1,1 +1,1 @@
-Models generator command     ------>     sequelize-auto -h 34.123.96.243 -d sportyDB -u postgres -x SportyPostgres123 -p 5432 --dialect postgres -o ./docs/sequelize-auto
+Models generator command     ------>     sequelize-auto -h localhost -d sportyDB -u postgres -x 00203 -p 5432 --dialect postgres -o ./docs/sequelize-auto

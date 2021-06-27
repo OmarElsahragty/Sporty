@@ -36,5 +36,6 @@ export default (connection, DataTypes) =>
       tableName: "GroupRoles",
       schema: "public",
       timestamps: true,
+      paranoid: true,
     }
   );
