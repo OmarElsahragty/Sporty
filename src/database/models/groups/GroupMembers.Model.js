@@ -29,6 +29,11 @@ export default (connection, DataTypes) =>
           key: "id",
         },
       },
+      approved: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+        defaultValue: false,
+      },
     },
     {
       connection,
