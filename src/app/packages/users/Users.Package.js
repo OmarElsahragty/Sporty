@@ -27,7 +27,9 @@ export const checkUser = async (
 export const profile = async (userId) => {
   try {
     const user = await Database.Users.findByPk(userId, {
-      attributes: { exclude: ["password", "createdAt", "updatedAt"] },
+      attributes: {
+        exclude: ["password", "createdAt", "updatedAt", "deletedAt"],
+      },
     });
 
     return Protocols.appResponse({ data: user });
@@ -91,7 +93,9 @@ export const update = async (args, id) => {
     const updatedUser = await Database.Users.update(args, {
       where: { id },
       returning: true,
-      attributes: { exclude: ["password", "createdAt", "updatedAt"] },
+      attributes: {
+        exclude: ["password", "createdAt", "updatedAt", "deletedAt"],
+      },
     });
 
     return Protocols.appResponse({ data: updatedUser[1] });
@@ -103,7 +107,7 @@ export const update = async (args, id) => {
 export const changePassword = async ({ oldPassword, newPassword }, userId) => {
   try {
     const user = await Database.Users.findByPk(userId, {
-      attributes: { exclude: ["createdAt", "updatedAt"] },
+      attributes: { exclude: ["createdAt", "updatedAt", "deletedAt"] },
     });
 
     if (user && bcrypt.compareSync(oldPassword, user.password)) {

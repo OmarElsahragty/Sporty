@@ -58,5 +58,6 @@ export default (connection, DataTypes) =>
       tableName: "Users",
       schema: "public",
       timestamps: true,
+      paranoid: true,
     }
   );
