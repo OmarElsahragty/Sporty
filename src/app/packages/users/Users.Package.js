@@ -32,6 +32,8 @@ export const profile = async (userId) => {
       },
     });
 
+    user.picture = `${Config.CloudBucketURL}${user.picture}`;
+
     return Protocols.appResponse({ data: user });
   } catch (err) {
     return Protocols.appResponse({ err });
