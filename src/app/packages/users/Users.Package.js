@@ -32,7 +32,7 @@ export const profile = async (userId) => {
       },
     });
 
-    user.picture = `${Config.CloudBucketURL}${user.picture}`;
+    if (user.picture) user.picture = `${Config.CloudBucketURL}${user.picture}`;
 
     return Protocols.appResponse({ data: user });
   } catch (err) {
