@@ -24,6 +24,14 @@ export default (connection, DataTypes) =>
         type: DataTypes.STRING(255),
         allowNull: true,
       },
+      GroupDefaultRole: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: "GroupRoles",
+          key: "id",
+        },
+      },
     },
     {
       connection,
