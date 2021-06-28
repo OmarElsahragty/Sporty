@@ -49,8 +49,10 @@ export const createGroupRole = async (args) => {
     });
 
     if (existDeletedGroupRole) {
+      const restoredGroupRole = await existDeletedGroupRole.restore();
+      restoredGroupRole.permissions = args.permissions;
       return Protocols.appResponse({
-        data: await existDeletedGroupRole.restore(),
+        data: await restoredGroupRole.save(),
       });
     } else {
       return Protocols.appResponse({
@@ -133,7 +135,17 @@ export const createGroup = async (args) => {
     });
 
     if (existDeletedGroup) {
-      return Protocols.appResponse({ data: await existDeletedGroup.restore() });
+      const restoredGroup = await existDeletedGroup.restore();
+
+      restoredGroup.picture = args.picture;
+      restoredGroup.description = args.description;
+      restoredGroup.gender = args.gender;
+      restoredGroup.restoredGroup = args.restoredGroup;
+      restoredGroup.approved = args.approved;
+
+      return Protocols.appResponse({
+        data: await restoredGroup.save(),
+      });
     } else {
       return Protocols.appResponse({
         data: await Database.Groups.create(args),
