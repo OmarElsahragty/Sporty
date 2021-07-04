@@ -186,3 +186,19 @@ export const deleteGroup = async (id) => {
 // **==========================================================================
 // **                        Groups Members
 // **==========================================================================
+
+export const joinGroup = async (groupId, userId) => {
+  try {
+    const Configurations = await Database.Configurations.findByPk(1);
+
+    return Protocols.appResponse({
+      data: await Database.GroupMembers.create({
+        userId,
+        groupId,
+        groupRoleId: Configurations.GroupDefaultRole,
+      }),
+    });
+  } catch (err) {
+    return Protocols.appResponse({ err });
+  }
+};

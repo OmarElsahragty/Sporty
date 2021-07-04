@@ -1254,6 +1254,7 @@ export default async (Database) => {
   // *                        CONFIGURATIONS
   // **==========================================================================
   await Database.Configurations.create({
+    id: 1,
     emailServiceHost: null,
     EmailAddress: null,
     EmailUsername: null,

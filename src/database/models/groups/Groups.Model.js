@@ -30,6 +30,14 @@ export default (connection, DataTypes) =>
         type: DataTypes.ENUM("M", "F"),
         allowNull: false,
       },
+      region: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Regions",
+          key: "id",
+        },
+      },
       interests: {
         type: DataTypes.ARRAY(DataTypes.INTEGER),
         allowNull: false,

@@ -22,7 +22,6 @@ export default (connection, DataTypes) =>
       },
       groupRoleId: {
         type: DataTypes.INTEGER,
-        primaryKey: true,
         allowNull: false,
         references: {
           model: "GroupRoles",
