@@ -125,6 +125,7 @@ export const showGroup = async (groupId, userId) => {
   try {
     const currentUser = await Database.GroupMembers.findOne({
       where: { groupId, userId },
+      attributes: ["groupRoleId", "approved"],
     });
 
     const group = await Database.Groups.findByPk(groupId, {
@@ -154,8 +155,8 @@ export const showGroup = async (groupId, userId) => {
     return Protocols.appResponse({
       data: group
         ? {
+            ...group.dataValues,
             currentUser,
-            ...group,
           }
         : null,
     });
