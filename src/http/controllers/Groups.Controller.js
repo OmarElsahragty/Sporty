@@ -54,7 +54,12 @@ class GroupsController extends BaseController {
   };
 
   getGroup = async (req, res, next) => {
-    const data = await this.exec(next, groupsPackage.showGroup, req.params.id);
+    const data = await this.exec(
+      next,
+      groupsPackage.showGroup,
+      req.params.id,
+      req.userId
+    );
     if (data) return this.okRes(req, res, data);
   };
 
