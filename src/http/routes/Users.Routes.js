@@ -5,7 +5,7 @@ import { usersPackage } from "../../app/packages";
 
 const router = express.Router();
 
-router.get("/profile", Authenticate, usersController.profile);
+router.get("/profile", Authenticate(), usersController.profile);
 
 router.post(
   "/login",
@@ -21,14 +21,14 @@ router.post(
 
 router.put(
   "/user",
-  Authenticate,
+  Authenticate(),
   validate(usersPackage.validation.modifyValidator),
   usersController.modify
 );
 
 router.put(
   "/password",
-  Authenticate,
+  Authenticate(),
   validate(usersPackage.validation.changePasswordValidator),
   usersController.changePassword
 );

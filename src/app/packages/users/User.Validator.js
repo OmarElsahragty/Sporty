@@ -5,13 +5,17 @@ const firstName = yup
   .string()
   .required(LocaleKeys.REQUIRED_FIRST_NAME)
   .trim()
-  .matches(/^[a-zA-Z\s]{3,30}.*$/, LocaleKeys.INVALID_FIRST_NAME);
+  .min(3, LocaleKeys.INVALID_FIRST_NAME)
+  .max(30, LocaleKeys.INVALID_FIRST_NAME)
+  .matches(/^[a-zA-Z\s]*$/, LocaleKeys.INVALID_FIRST_NAME);
 
 const lastName = yup
   .string()
   .required(LocaleKeys.REQUIRED_LAST_NAME)
   .trim()
-  .matches(/^[a-zA-Z\s]{3,30}.*$/, LocaleKeys.INVALID_LAST_NAME);
+  .min(3, LocaleKeys.INVALID_LAST_NAME)
+  .max(30, LocaleKeys.INVALID_LAST_NAME)
+  .matches(/^[a-zA-Z\s]*$/, LocaleKeys.INVALID_LAST_NAME);
 
 const gender = yup
   .mixed()
