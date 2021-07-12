@@ -1,21 +1,16 @@
 import { MultiMessages } from "../helpers";
+import Errors from "../../errors";
 
-export default (schema) => {
-  return (req, res, next) => {
-    try {
-      const validatedData = schema.validateSync(req.body, {
-        abortEarly: false,
-        strict: false,
-        stripUnknown: true,
-      });
-      req.body = validatedData;
-      next();
-    } catch (err) {
-      return res.status(400).send({
-        error: {
-          message: MultiMessages(err.errors, req),
-        },
-      });
-    }
-  };
+export default (schema) => (req, _, next) => {
+  try {
+    const validatedData = schema.validateSync(req.body, {
+      abortEarly: false,
+      strict: false,
+      stripUnknown: true,
+    });
+    req.body = validatedData;
+    next();
+  } catch (err) {
+    return next(Errors.http.badRequest(MultiMessages(err.errors, req)));
+  }
 };

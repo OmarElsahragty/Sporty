@@ -8,7 +8,7 @@ import LocaleKeys from "../../locales";
 export const checkUser = async (
   id = null,
   email = null,
-  skipAdminCheck = true
+  adminCheck = false
 ) => {
   try {
     const user = await Database.Users.findOne({
@@ -17,7 +17,7 @@ export const checkUser = async (
     });
 
     return Protocols.appResponse({
-      data: user && (skipAdminCheck || user.isAdmin),
+      data: user && (!adminCheck || user.isAdmin),
     });
   } catch (err) {
     return Protocols.appResponse({ err });
