@@ -95,10 +95,19 @@ export const deleteGroupRole = async (id) => {
 // **                             Groups
 // **==========================================================================
 
+// TODO : Groups members count
+
 export const showGroups = async ({ pageNumber, pageSizeLimit, ...args }) => {
   try {
     const Groups = await Database.Groups.findAndCountAll({
       attributes: ["id", "name", "gender", "interests", "picture"],
+      include: [
+        {
+          model: Database.Regions,
+          as: "groupRegion",
+          include: [{ model: Database.Cites, as: "city" }],
+        },
+      ],
       ...Pagination(
         { where: Filter(args), order: Sorting(args) },
         pageNumber,
@@ -116,7 +125,27 @@ export const showGroup = async (id) => {
   try {
     return Protocols.appResponse({
       data: await Database.Groups.findByPk(id, {
-        include: [{ model: Database.GroupMembers, as: "GroupMembers" }],
+        attributes: {
+          exclude: ["region", "createdAt", "updatedAt"],
+        },
+        include: [
+          {
+            model: Database.Regions,
+            as: "groupRegion",
+            attributes: {
+              exclude: ["createdAt", "updatedAt", "deletedAt"],
+            },
+            include: [
+              {
+                model: Database.Cites,
+                as: "city",
+                attributes: {
+                  exclude: ["createdAt", "updatedAt", "deletedAt"],
+                },
+              },
+            ],
+          },
+        ],
       }),
     });
   } catch (err) {
@@ -124,33 +153,21 @@ export const showGroup = async (id) => {
   }
 };
 
-export const createGroup = async (args) => {
+export const createGroup = async (args, userId) => {
   try {
-    const existDeletedGroup = await Database.Groups.findOne({
-      where: {
-        name: args.name,
-        deletedAt: { [Op.ne]: null },
-      },
-      paranoid: false,
+    return Protocols.appResponse({
+      data: await Database.Groups.create(
+        { GroupMembers: { userId, approved: true }, ...args },
+        {
+          include: [
+            {
+              model: Database.GroupMembers,
+              as: "GroupMembers",
+            },
+          ],
+        }
+      ),
     });
-
-    if (existDeletedGroup) {
-      const restoredGroup = await existDeletedGroup.restore();
-
-      restoredGroup.picture = args.picture;
-      restoredGroup.description = args.description;
-      restoredGroup.gender = args.gender;
-      restoredGroup.restoredGroup = args.restoredGroup;
-      restoredGroup.approved = args.approved;
-
-      return Protocols.appResponse({
-        data: await restoredGroup.save(),
-      });
-    } else {
-      return Protocols.appResponse({
-        data: await Database.Groups.create(args),
-      });
-    }
   } catch (err) {
     return Protocols.appResponse({ err });
   }
@@ -169,15 +186,55 @@ export const updateGroup = async (id, args) => {
   }
 };
 
+// TODO : Delete return
+
 export const deleteGroup = async (id) => {
   try {
     return Protocols.appResponse({
       data: await Database.Groups.destroy({
         where: { id },
-        force: false,
         returning: true,
       }),
     });
+  } catch (err) {
+    return Protocols.appResponse({ err });
+  }
+};
+
+export const showMyGroups = async (
+  { pageNumber, pageSizeLimit, ...args },
+  userId
+) => {
+  try {
+    const Groups = await Database.GroupMembers.findAndCountAll(
+      {
+        attributes: ["approved"],
+        ...Pagination(
+          { where: { userId, ...Filter(args) }, order: Sorting(args) },
+          pageNumber,
+          pageSizeLimit
+        ),
+      },
+      {
+        include: [
+          {
+            order: Sorting(args),
+            attributes: ["id", "name", "gender", "interests", "picture"],
+            model: Database.Groups,
+            as: "group",
+            include: [
+              {
+                model: Database.Regions,
+                as: "groupRegion",
+                include: [{ model: Database.Cites, as: "city" }],
+              },
+            ],
+          },
+        ],
+      }
+    );
+
+    return Protocols.appResponse({ data: Groups });
   } catch (err) {
     return Protocols.appResponse({ err });
   }
@@ -187,7 +244,34 @@ export const deleteGroup = async (id) => {
 // **                        Groups Members
 // **==========================================================================
 
-export const joinGroup = async (groupId, userId) => {
+export const showGroupMembers = async (
+  groupId,
+  { pageNumber, pageSizeLimit, ...args }
+) => {
+  try {
+    const Members = await Database.GroupMembers.findAndCountAll({
+      attributes: ["groupRoleId", "approved"],
+      include: [
+        {
+          attributes: ["firstName", "lastName", "picture"],
+          model: Database.Users,
+          as: "user",
+        },
+      ],
+      ...Pagination(
+        { where: { groupId, ...Filter(args) }, order: Sorting(args) },
+        pageNumber,
+        pageSizeLimit
+      ),
+    });
+
+    return Protocols.appResponse({ data: Members });
+  } catch (err) {
+    return Protocols.appResponse({ err });
+  }
+};
+
+export const joinGroupRequest = async ({ groupId, userId }) => {
   try {
     const Configurations = await Database.Configurations.findByPk(1);
 
@@ -198,6 +282,38 @@ export const joinGroup = async (groupId, userId) => {
         groupRoleId: Configurations.GroupDefaultRole,
       }),
     });
+  } catch (err) {
+    return Protocols.appResponse({ err });
+  }
+};
+
+export const joinGroupApprove = async ({ groupId, userId }) => {
+  try {
+    const joinGroupApproval = await Database.GroupMembers.update(
+      { approved: true },
+      {
+        where: { groupId, userId },
+        returning: true,
+      }
+    );
+
+    return Protocols.appResponse({ data: joinGroupApproval[1] });
+  } catch (err) {
+    return Protocols.appResponse({ err });
+  }
+};
+
+export const groupRoleAssign = async ({ groupId, userId, groupRoleId }) => {
+  try {
+    const groupAssignedRole = await Database.GroupMembers.update(
+      { groupRoleId },
+      {
+        where: { groupId, userId },
+        returning: true,
+      }
+    );
+
+    return Protocols.appResponse({ data: groupAssignedRole[1] });
   } catch (err) {
     return Protocols.appResponse({ err });
   }

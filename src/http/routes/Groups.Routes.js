@@ -25,9 +25,26 @@ router.delete(
 // **                                Groups
 // **==========================================================================
 router.get("/groups", Authenticate(), groupsController.getGroups);
+router.get("/myGroups", Authenticate(), groupsController.getGroups);
 router.get("/group/:id", Authenticate(), groupsController.getGroup);
 router.post("/group", Authenticate(), groupsController.createGroup);
 router.put("/group/:id", Authenticate(), groupsController.modifyGroup);
 router.delete("/group/:id", Authenticate(), groupsController.deleteGroup);
+
+// **==========================================================================
+// **                        Groups Members
+// **==========================================================================
+router.get(
+  "/groupMembers/:id",
+  Authenticate(),
+  groupsController.getGroupMembers
+);
+router.post("/groupJoin", Authenticate(), groupsController.joinGroup);
+router.put("/groupJoin", Authenticate(), groupsController.approveGroupJoin);
+router.put(
+  "/groupMemberRole",
+  Authenticate(),
+  groupsController.assignGroupRole
+);
 
 export default router;

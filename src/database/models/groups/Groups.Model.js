@@ -27,7 +27,7 @@ export default (connection, DataTypes) =>
         allowNull: true,
       },
       gender: {
-        type: DataTypes.ENUM("M", "F"),
+        type: DataTypes.ENUM("M", "F", "X"),
         allowNull: false,
       },
       region: {
@@ -53,6 +53,7 @@ export default (connection, DataTypes) =>
       tableName: "Groups",
       schema: "public",
       timestamps: true,
-      paranoid: true,
+      onDelete: "cascade",
+      onUpdate: "cascade",
     }
   );

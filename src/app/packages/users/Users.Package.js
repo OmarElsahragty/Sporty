@@ -5,6 +5,10 @@ import { Protocols } from "../../helpers";
 import Config from "../../../../config";
 import LocaleKeys from "../../locales";
 
+// **==========================================================================
+// **                              Users
+// **==========================================================================
+
 export const checkUser = async (
   id = null,
   email = null,

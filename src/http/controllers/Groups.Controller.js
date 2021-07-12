@@ -47,6 +47,7 @@ class GroupsController extends BaseController {
   // **==========================================================================
   // **                              Groups
   // **==========================================================================
+
   getGroups = async (req, res, next) => {
     const data = await this.exec(next, groupsPackage.showGroups, req.query);
     if (data) return this.okRes(req, res, data);
@@ -58,7 +59,12 @@ class GroupsController extends BaseController {
   };
 
   createGroup = async (req, res, next) => {
-    const data = await this.exec(next, groupsPackage.createGroup, req.body);
+    const data = await this.exec(
+      next,
+      groupsPackage.createGroup,
+      req.body,
+      req.userId
+    );
     if (data) return this.okRes(req, res, data);
   };
 
@@ -78,6 +84,53 @@ class GroupsController extends BaseController {
       groupsPackage.deleteGroup,
       req.params.id
     );
+    if (data) return this.okRes(req, res, data);
+  };
+
+  getMyGroup = async (req, res, next) => {
+    const data = await this.exec(
+      next,
+      groupsPackage.showGroup,
+      req.query,
+      req.userId
+    );
+    if (data) return this.okRes(req, res, data);
+  };
+
+  // **==========================================================================
+  // **                        Groups Members
+  // **==========================================================================
+
+  getGroupMembers = async (req, res, next) => {
+    const data = await this.exec(
+      next,
+      groupsPackage.showGroupMembers,
+      req.params.id,
+      req.query
+    );
+    if (data) return this.okRes(req, res, data);
+  };
+
+  joinGroup = async (req, res, next) => {
+    const data = await this.exec(
+      next,
+      groupsPackage.joinGroupRequest,
+      req.body
+    );
+    if (data) return this.okRes(req, res, data);
+  };
+
+  approveGroupJoin = async (req, res, next) => {
+    const data = await this.exec(
+      next,
+      groupsPackage.joinGroupApprove,
+      req.body
+    );
+    if (data) return this.okRes(req, res, data);
+  };
+
+  assignGroupRole = async (req, res, next) => {
+    const data = await this.exec(next, groupsPackage.groupRoleAssign, req.body);
     if (data) return this.okRes(req, res, data);
   };
 }
