@@ -16,6 +16,7 @@
     "SharedArrayBuffer": "readonly"
   },
   "rules": {
+    "indent": "off",
     "no-invalid-this": 0,
     "babel/no-invalid-this": 1,
     "no-use-before-define": [

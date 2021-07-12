@@ -127,33 +127,37 @@ export const showGroup = async (groupId, userId) => {
       where: { groupId, userId },
     });
 
-    return Protocols.appResponse({
-      data: {
-        currentUser,
-        ...(await Database.Groups.findByPk(groupId, {
+    const group = await Database.Groups.findByPk(groupId, {
+      attributes: {
+        exclude: ["region", "createdAt", "updatedAt"],
+      },
+      include: [
+        {
+          model: Database.Regions,
+          as: "groupRegion",
           attributes: {
-            exclude: ["region", "createdAt", "updatedAt"],
+            exclude: ["createdAt", "updatedAt", "deletedAt"],
           },
           include: [
             {
-              model: Database.Regions,
-              as: "groupRegion",
+              model: Database.Cites,
+              as: "city",
               attributes: {
                 exclude: ["createdAt", "updatedAt", "deletedAt"],
               },
-              include: [
-                {
-                  model: Database.Cites,
-                  as: "city",
-                  attributes: {
-                    exclude: ["createdAt", "updatedAt", "deletedAt"],
-                  },
-                },
-              ],
             },
           ],
-        })),
-      },
+        },
+      ],
+    });
+
+    return Protocols.appResponse({
+      data: group
+        ? {
+            currentUser,
+            ...group,
+          }
+        : null,
     });
   } catch (err) {
     return Protocols.appResponse({ err });
