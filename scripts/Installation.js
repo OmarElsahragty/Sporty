@@ -1,6 +1,6 @@
-import { error, success } from "consola";
 import Database from "../src/database";
 import Seeders from "./Seeders";
+import "../colors";
 
 Database.connection
   .sync({
@@ -10,16 +10,11 @@ Database.connection
   .then(async () => {
     await Seeders(Database); // SEEDING DATA
 
-    success({
-      badge: true,
-      message: `Database ${
+    // eslint-disable-next-line no-console
+    console.log(
+      `Database ${
         process.env.NODE_ENV === "Rest" ? "rested" : "initialized"
-      } successfully`,
-    });
+      } successfully`.success
+    );
   })
-  .catch((err) => {
-    error({
-      badge: true,
-      message: err.message,
-    });
-  });
+  .catch((error) => console.error(`${error.message}`.error));

@@ -28,8 +28,7 @@ class BoomHttpErrors {
 
   handleError(err) {
     if (err.isServer) {
-      console.error({ SERVER_ERROR: err });
-      return SERVER_ERROR;
+      return SERVER_ERROR(err);
     } else return err.output.payload;
   }
 }

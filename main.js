@@ -5,11 +5,12 @@ import Config from "./config";
 export default () => {
   DatabaseConnection.authenticate()
     .then(() => {
-      console.success(
-        `Successfully connected to ${Config.Database.Name} database`
+      // eslint-disable-next-line no-console
+      console.log(
+        `Successfully connected to ${Config.Database.Name} database`.success
       );
 
       new Server(Config.Port).start();
     })
-    .catch((error) => console.error(error.message));
+    .catch((error) => console.error(`${error.message}`.error));
 };

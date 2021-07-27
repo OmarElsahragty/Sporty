@@ -1,20 +1,8 @@
-import { error, success } from "consola";
 import * as Sentry from "@sentry/node";
 import "@sentry/tracing";
 import Config from "./config";
 import Main from "./main";
-
-console.success = (message) =>
-  success({
-    badge: true,
-    message,
-  });
-
-console.error = (message) =>
-  error({
-    badge: true,
-    message,
-  });
+import "./colors";
 
 Sentry.init({
   dsn: Config.SentryDNS,

@@ -15,19 +15,16 @@ class SequelizeDatabaseErrors {
   }
 
   handleAppDatabaseError(err) {
-    console.error(`ERROR: Database Error while performing query: ${err.sql}`);
-    console.error(`Original Error: ${err}`);
-    return SERVER_ERROR;
+    return SERVER_ERROR(
+      `${err} - Database Error while performing query: ${err.sql}`
+    );
   }
 
   handleValidationError(err) {
-    this.message = err.errors.map(
-      (validationErrItem) => validationErrItem.message
-    );
     return {
       statusCode: 422,
       error: "Bad Data",
-      message: this.message,
+      message: err.errors.map((validationErrItem) => validationErrItem.message),
     };
   }
 
@@ -35,8 +32,7 @@ class SequelizeDatabaseErrors {
     if (this.isValidationError(err)) return this.handleValidationError(err);
     if (this.isAppDatabaseError(err)) return this.handleAppDatabaseError(err);
 
-    console.error({ SERVER_ERROR: err });
-    return SERVER_ERROR;
+    return SERVER_ERROR(err);
   }
 }
 

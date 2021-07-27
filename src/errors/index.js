@@ -10,14 +10,12 @@ class AppErrors {
 
   __handleHttpError(err) {
     if (err.isServer) {
-      console.error({ SERVER_ERROR: err });
-      return SERVER_ERROR;
+      return SERVER_ERROR(err);
     } else return err.output.payload;
   }
 
   __handleUnknownError(err) {
-    console.error({ UNKNOWN_ERROR: err });
-    return SERVER_ERROR;
+    return SERVER_ERROR(err);
   }
 
   errorHandler(err) {
