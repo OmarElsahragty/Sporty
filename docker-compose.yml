@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  pgdb:
+    image: "postgres:13"
+    restart: always
+    container_name: sporty_postgres
+    ports:
+      - 5440:5432
+    volumes:
+      - sporty_pgdata:/var/lib/postgresql/data
+    env_file:
+      - .postgres
+
+  backend:
+    build:
+      context: .
+    container_name: sporty_backend
+    depends_on:
+      - pgdb
+    env_file:
+      - .env
+
+volumes:
+  sporty_pgdata:
+    driver: local
+    name: sporty_pgdata
