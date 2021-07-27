@@ -1,1 +1,3 @@
 Models generator command     ------>     sequelize-auto -h localhost -d sportyDB -u postgres -x 00203 -p 5432 --dialect postgres -o ./docs/sequelize-auto
+
+Postman Collection URL       ------>     https://www.getpostman.com/collections/635df66899d0c70c8adc
