@@ -1,11 +1,11 @@
 export {
   showGroupRoles,
   showGroupRole,
-  showMyGroups,
   createGroupRole,
   updateGroupRole,
   deleteGroupRole,
   showGroups,
+  showMyGroups,
   showGroup,
   createGroup,
   updateGroup,

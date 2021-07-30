@@ -95,8 +95,6 @@ export const deleteGroupRole = async (id) => {
 // **                             Groups
 // **==========================================================================
 
-// TODO : Groups members count
-
 export const showGroups = async ({ pageNumber, pageSizeLimit, ...args }) => {
   try {
     const Groups = await Database.Groups.findAndCountAll({
@@ -105,7 +103,18 @@ export const showGroups = async ({ pageNumber, pageSizeLimit, ...args }) => {
         {
           model: Database.Regions,
           as: "groupRegion",
-          include: [{ model: Database.Cites, as: "city" }],
+          attributes: {
+            exclude: ["createdAt", "updatedAt", "deletedAt"],
+          },
+          include: [
+            {
+              model: Database.Cites,
+              as: "city",
+              attributes: {
+                exclude: ["createdAt", "updatedAt", "deletedAt"],
+              },
+            },
+          ],
         },
       ],
       ...Pagination(
@@ -113,6 +122,112 @@ export const showGroups = async ({ pageNumber, pageSizeLimit, ...args }) => {
         pageNumber,
         pageSizeLimit
       ),
+    }).then(async (data) => {
+      await Promise.all(
+        data.rows.map(async (element) => {
+          const interests = [];
+          await Promise.all(
+            element.dataValues.interests.map(async (interestId) => {
+              const interestData = await Database.Sports.findByPk(interestId, {
+                attributes: {
+                  exclude: ["createdAt", "updatedAt", "deletedAt"],
+                },
+              });
+              interests.push(interestData.dataValues);
+            })
+          );
+
+          const membersCount = await Database.GroupMembers.count({
+            where: { groupId: element.dataValues.id },
+          });
+
+          element.dataValues = {
+            ...element.dataValues,
+            membersCount,
+            interests,
+          };
+        })
+      );
+
+      return data;
+    });
+
+    return Protocols.appResponse({ data: Groups });
+  } catch (err) {
+    return Protocols.appResponse({ err });
+  }
+};
+
+export const showMyGroups = async (
+  { pageNumber, pageSizeLimit, ...args },
+  userId
+) => {
+  try {
+    const Groups = await Database.GroupMembers.findAndCountAll({
+      attributes: ["approved"],
+      ...Pagination(
+        { where: { userId, ...Filter(args) }, order: Sorting(args) },
+        pageNumber,
+        pageSizeLimit
+      ),
+      include: [
+        {
+          attributes: ["id", "name", "gender", "interests", "picture"],
+          model: Database.Groups,
+          as: "group",
+          include: [
+            {
+              model: Database.Regions,
+              as: "groupRegion",
+              attributes: {
+                exclude: ["createdAt", "updatedAt", "deletedAt"],
+              },
+              include: [
+                {
+                  model: Database.Cites,
+                  as: "city",
+                  attributes: {
+                    exclude: ["createdAt", "updatedAt", "deletedAt"],
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    }).then(async (data) => {
+      await Promise.all(
+        data.rows.map(async (element) => {
+          const interests = [];
+          await Promise.all(
+            element.dataValues.group.dataValues.interests.map(
+              async (interestId) => {
+                const interestData = await Database.Sports.findByPk(
+                  interestId,
+                  {
+                    attributes: {
+                      exclude: ["createdAt", "updatedAt", "deletedAt"],
+                    },
+                  }
+                );
+                interests.push(interestData.dataValues);
+              }
+            )
+          );
+
+          const membersCount = await Database.GroupMembers.count({
+            where: { groupId: element.dataValues.group.dataValues.id },
+          });
+
+          element.dataValues.group = {
+            ...element.dataValues.group.dataValues,
+            membersCount,
+            interests,
+          };
+        })
+      );
+
+      return data;
     });
 
     return Protocols.appResponse({ data: Groups });
@@ -152,11 +267,24 @@ export const showGroup = async (groupId, userId) => {
       ],
     });
 
+    const interests = [];
+    await Promise.all(
+      group.dataValues.interests.map(async (interestId) => {
+        const interestData = await Database.Sports.findByPk(interestId, {
+          attributes: {
+            exclude: ["createdAt", "updatedAt", "deletedAt"],
+          },
+        });
+        interests.push(interestData.dataValues);
+      })
+    );
+
     return Protocols.appResponse({
       data: group
         ? {
             ...group.dataValues,
             currentUser,
+            interests,
           }
         : null,
     });
@@ -198,55 +326,20 @@ export const updateGroup = async (id, args) => {
   }
 };
 
-// TODO : Delete return
-
 export const deleteGroup = async (id) => {
   try {
-    return Protocols.appResponse({
-      data: await Database.Groups.destroy({
-        where: { id },
-        returning: true,
-      }),
-    });
-  } catch (err) {
-    return Protocols.appResponse({ err });
-  }
-};
-
-export const showMyGroups = async (
-  { pageNumber, pageSizeLimit, ...args },
-  userId
-) => {
-  try {
-    const Groups = await Database.GroupMembers.findAndCountAll(
-      {
-        attributes: ["approved"],
-        ...Pagination(
-          { where: { userId, ...Filter(args) }, order: Sorting(args) },
-          pageNumber,
-          pageSizeLimit
-        ),
+    const group = await Database.Groups.findByPk(id, {
+      attributes: {
+        exclude: ["createdAt", "updatedAt"],
       },
-      {
-        include: [
-          {
-            order: Sorting(args),
-            attributes: ["id", "name", "gender", "interests", "picture"],
-            model: Database.Groups,
-            as: "group",
-            include: [
-              {
-                model: Database.Regions,
-                as: "groupRegion",
-                include: [{ model: Database.Cites, as: "city" }],
-              },
-            ],
-          },
-        ],
-      }
-    );
+    });
 
-    return Protocols.appResponse({ data: Groups });
+    return Protocols.appResponse({
+      data:
+        (await Database.Groups.destroy({
+          where: { id },
+        })) && group,
+    });
   } catch (err) {
     return Protocols.appResponse({ err });
   }

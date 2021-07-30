@@ -25,7 +25,7 @@ router.delete(
 // **                                Groups
 // **==========================================================================
 router.get("/groups", Authenticate(), groupsController.getGroups);
-router.get("/myGroups", Authenticate(), groupsController.getGroups);
+router.get("/myGroups", Authenticate(), groupsController.getMyGroups);
 router.get("/group/:id", Authenticate(), groupsController.getGroup);
 router.post("/group", Authenticate(), groupsController.createGroup);
 router.put("/group/:id", Authenticate(), groupsController.modifyGroup);

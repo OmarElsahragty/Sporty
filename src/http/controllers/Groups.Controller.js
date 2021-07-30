@@ -53,6 +53,16 @@ class GroupsController extends BaseController {
     if (data) return this.okRes(req, res, data);
   };
 
+  getMyGroups = async (req, res, next) => {
+    const data = await this.exec(
+      next,
+      groupsPackage.showMyGroups,
+      req.query,
+      req.userId
+    );
+    if (data) return this.okRes(req, res, data);
+  };
+
   getGroup = async (req, res, next) => {
     const data = await this.exec(
       next,
@@ -88,16 +98,6 @@ class GroupsController extends BaseController {
       next,
       groupsPackage.deleteGroup,
       req.params.id
-    );
-    if (data) return this.okRes(req, res, data);
-  };
-
-  getMyGroup = async (req, res, next) => {
-    const data = await this.exec(
-      next,
-      groupsPackage.showGroup,
-      req.query,
-      req.userId
     );
     if (data) return this.okRes(req, res, data);
   };
