@@ -10,7 +10,9 @@ class BaseController {
     const { err, data } = await fn(...params);
     if (err) {
       if (err.isAppError) {
-        return next(Errors.http.badRequest(err.error));
+        return err.error === LocaleKeys.NOT_FOUND_404
+          ? next(Errors.http.notFound(err.error))
+          : next(Errors.http.badRequest(err.error));
       } else {
         return next(err.error);
       }

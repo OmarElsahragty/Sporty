@@ -1,10 +1,7 @@
 import { createLogger, format as winstonFormat, transports } from "winston";
 
 const format = winstonFormat.combine(
-  winstonFormat.colorize(),
-  winstonFormat.simple(),
-  winstonFormat.timestamp({ format: "DD-MMM-YYYY HH:mm:ss" }),
-  winstonFormat.align(),
+  winstonFormat.timestamp({ format: "DD-MM-YYYY HH:mm:ss" }),
   winstonFormat.printf(
     (info) => `${info.level}: ${[info.timestamp]}: ${info.message}`
   )

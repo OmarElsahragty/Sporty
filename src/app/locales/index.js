@@ -3,6 +3,8 @@ export default Object.freeze({
   AND: "and",
   SERVER_ERROR: "server-error",
 
+  NOT_FOUND_404: "not-found",
+
   FORBIDDEN: "forbidden",
   UNAUTHORIZED: "unauthorized",
   NO_TOKEN: "no-token",

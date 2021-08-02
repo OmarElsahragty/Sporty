@@ -4,14 +4,15 @@ export default (params) => {
   const filterObj = {};
 
   Object.keys(params).map((key) => {
-    const value = JSON.parse(params[key]);
-
     if (
-      value !== "ASC" &&
-      value !== "DESC" &&
+      params[key] &&
+      params[key] !== "ASC" &&
+      params[key] !== "DESC" &&
       key !== "page" &&
       key !== "pageSizeLimit"
     ) {
+      const value = JSON.parse(params[key]);
+
       if (Array.isArray(value)) {
         Object.assign(filterObj, {
           [key]: { [Op.contains]: value },

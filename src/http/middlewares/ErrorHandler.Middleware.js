@@ -11,14 +11,13 @@ export default (err, req, res, _) => {
       ? req.t(handledError.message)
       : MultiMessages(handledError.message, req);
 
-  if (
-    process.env.NODE_ENV === "Development" ||
-    handledError.statusCode === 500
-  ) {
+  if (handledError.statusCode === 500) {
     Logger.error(
-      `${handledError.statusCode} - ${message} ${
-        handledError.internalError && `- ${handledError.internalError}`
-      } - ${req.originalUrl} - ${req.method} - ${req.ip}`
+      `${handledError.statusCode} - ${handledError.internalError} - ${req.method} ${req.originalUrl} - ${req.ip}`
+    );
+  } else if (process.env.NODE_ENV === "Development") {
+    Logger.error(
+      `${handledError.statusCode} - ${message} - ${req.method} ${req.originalUrl} - ${req.ip}`
     );
   }
 

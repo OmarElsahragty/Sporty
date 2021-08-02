@@ -123,32 +123,38 @@ export const showGroups = async ({ pageNumber, pageSizeLimit, ...args }) => {
         pageSizeLimit
       ),
     }).then(async (data) => {
-      await Promise.all(
-        data.rows.map(async (element) => {
-          const interests = [];
-          await Promise.all(
-            element.dataValues.interests.map(async (interestId) => {
-              const interestData = await Database.Sports.findByPk(interestId, {
-                attributes: {
-                  exclude: ["createdAt", "updatedAt", "deletedAt"],
-                },
+      if (data && data.rows) {
+        await Promise.all(
+          data.rows.map(async (element) => {
+            if (element && element.dataValues) {
+              const interests = [];
+              await Promise.all(
+                element.dataValues.interests.map(async (interestId) => {
+                  const interestData = await Database.Sports.findByPk(
+                    interestId,
+                    {
+                      attributes: {
+                        exclude: ["createdAt", "updatedAt", "deletedAt"],
+                      },
+                    }
+                  );
+                  interests.push(interestData.dataValues);
+                })
+              );
+
+              const membersCount = await Database.GroupMembers.count({
+                where: { groupId: element.dataValues.id },
               });
-              interests.push(interestData.dataValues);
-            })
-          );
 
-          const membersCount = await Database.GroupMembers.count({
-            where: { groupId: element.dataValues.id },
-          });
-
-          element.dataValues = {
-            ...element.dataValues,
-            membersCount,
-            interests,
-          };
-        })
-      );
-
+              element.dataValues = {
+                ...element.dataValues,
+                membersCount,
+                interests,
+              };
+            }
+          })
+        );
+      }
       return data;
     });
 
@@ -196,36 +202,45 @@ export const showMyGroups = async (
         },
       ],
     }).then(async (data) => {
-      await Promise.all(
-        data.rows.map(async (element) => {
-          const interests = [];
-          await Promise.all(
-            element.dataValues.group.dataValues.interests.map(
-              async (interestId) => {
-                const interestData = await Database.Sports.findByPk(
-                  interestId,
-                  {
-                    attributes: {
-                      exclude: ["createdAt", "updatedAt", "deletedAt"],
-                    },
+      if (data && data.rows) {
+        await Promise.all(
+          data.rows.map(async (element) => {
+            if (
+              element &&
+              element.dataValues &&
+              element.dataValues.group &&
+              element.dataValues.group.dataValues
+            ) {
+              const interests = [];
+              await Promise.all(
+                element.dataValues.group.dataValues.interests.map(
+                  async (interestId) => {
+                    const interestData = await Database.Sports.findByPk(
+                      interestId,
+                      {
+                        attributes: {
+                          exclude: ["createdAt", "updatedAt", "deletedAt"],
+                        },
+                      }
+                    );
+                    interests.push(interestData.dataValues);
                   }
-                );
-                interests.push(interestData.dataValues);
-              }
-            )
-          );
+                )
+              );
 
-          const membersCount = await Database.GroupMembers.count({
-            where: { groupId: element.dataValues.group.dataValues.id },
-          });
+              const membersCount = await Database.GroupMembers.count({
+                where: { groupId: element.dataValues.group.dataValues.id },
+              });
 
-          element.dataValues.group = {
-            ...element.dataValues.group.dataValues,
-            membersCount,
-            interests,
-          };
-        })
-      );
+              element.dataValues.group = {
+                ...element.dataValues.group.dataValues,
+                membersCount,
+                interests,
+              };
+            }
+          })
+        );
+      }
 
       return data;
     });
@@ -274,26 +289,32 @@ export const showGroup = async (groupId, userId) => {
       ],
     });
 
-    const interests = [];
-    await Promise.all(
-      group.dataValues.interests.map(async (interestId) => {
-        const interestData = await Database.Sports.findByPk(interestId, {
-          attributes: {
-            exclude: ["createdAt", "updatedAt", "deletedAt"],
-          },
-        });
-        interests.push(interestData.dataValues);
-      })
-    );
+    if (group && group.dataValues) {
+      const interests = [];
+      await Promise.all(
+        group.dataValues.interests.map(async (interestId) => {
+          const interestData = await Database.Sports.findByPk(interestId, {
+            attributes: {
+              exclude: ["createdAt", "updatedAt", "deletedAt"],
+            },
+          });
+          interests.push(interestData.dataValues);
+        })
+      );
+
+      return Protocols.appResponse({
+        data: group
+          ? {
+              ...group.dataValues,
+              currentUser,
+              interests,
+            }
+          : null,
+      });
+    }
 
     return Protocols.appResponse({
-      data: group
-        ? {
-            ...group.dataValues,
-            currentUser,
-            interests,
-          }
-        : null,
+      data: null,
     });
   } catch (err) {
     return Protocols.appResponse({ err });

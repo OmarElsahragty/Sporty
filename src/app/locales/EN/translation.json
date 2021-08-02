@@ -3,6 +3,8 @@
   "and": "and",
   "server-error": "Oops! Something went wrong!",
 
+  "not-found": "We can't find the requested data!",
+
   "forbidden": "Failed, Forbidden access",
   "unauthorized": "Failed, Unauthorized",
   "no-token": "Failed, No token provided",

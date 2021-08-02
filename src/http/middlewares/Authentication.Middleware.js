@@ -22,7 +22,7 @@ export default (isAdmin = false) => {
       );
 
       if (!isAuthenticated.data) {
-        return next(Errors.http.unauthorized(LocaleKeys.UNAUTHORIZED));
+        return next(Errors.http.forbidden(LocaleKeys.FORBIDDEN));
       }
 
       req.userId = decoded.id;

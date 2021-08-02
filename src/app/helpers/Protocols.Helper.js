@@ -9,7 +9,7 @@ export const appResponse = ({ err, data }) => {
       },
       data: undefined,
     };
-  } else if (!data || data.length === 0) {
+  } else if (!data || data.length === 0 || data.count === 0) {
     return {
       err: {
         isAppError: true,
