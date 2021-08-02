@@ -240,7 +240,14 @@ export const showGroup = async (groupId, userId) => {
   try {
     const currentUser = await Database.GroupMembers.findOne({
       where: { groupId, userId },
-      attributes: ["groupRoleId", "approved"],
+      attributes: ["approved"],
+      include: [
+        {
+          attributes: ["arabicName", "englishName", "permissions"],
+          model: Database.GroupRoles,
+          as: "groupRole",
+        },
+      ],
     });
 
     const group = await Database.Groups.findByPk(groupId, {
@@ -355,12 +362,17 @@ export const showGroupMembers = async (
 ) => {
   try {
     const Members = await Database.GroupMembers.findAndCountAll({
-      attributes: ["groupRoleId", "approved"],
+      attributes: ["approved"],
       include: [
         {
           attributes: ["firstName", "lastName", "picture"],
           model: Database.Users,
           as: "user",
+        },
+        {
+          attributes: ["arabicName", "englishName", "permissions"],
+          model: Database.GroupRoles,
+          as: "groupRole",
         },
       ],
       ...Pagination(
@@ -376,13 +388,13 @@ export const showGroupMembers = async (
   }
 };
 
-export const joinGroupRequest = async ({ groupId, userId }) => {
+export const joinGroupRequest = async ({ groupId, userId }, loggedInUser) => {
   try {
     const Configurations = await Database.Configurations.findByPk(1);
 
     return Protocols.appResponse({
       data: await Database.GroupMembers.create({
-        userId,
+        userId: userId || loggedInUser,
         groupId,
         groupRoleId: Configurations.GroupDefaultRole,
       }),

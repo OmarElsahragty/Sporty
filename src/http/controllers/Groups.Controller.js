@@ -120,7 +120,8 @@ class GroupsController extends BaseController {
     const data = await this.exec(
       next,
       groupsPackage.joinGroupRequest,
-      req.body
+      req.body,
+      req.userId
     );
     if (data) return this.okRes(req, res, data);
   };

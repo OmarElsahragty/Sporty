@@ -57,7 +57,7 @@ export default ({
     foreignKey: "groupRoleId",
   });
   GroupRoles.hasOne(GroupMembers, {
-    as: "GroupMember",
+    as: "groupRole", // ! Modified From region_Region groupRegion
     foreignKey: "groupRoleId",
   });
   Events.belongsTo(Groups, { as: "group", foreignKey: "groupId" });
