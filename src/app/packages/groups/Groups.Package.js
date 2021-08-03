@@ -386,7 +386,7 @@ export const showGroupMembers = async (
       attributes: ["approved"],
       include: [
         {
-          attributes: ["firstName", "lastName", "picture"],
+          attributes: ["id", "firstName", "lastName", "picture"],
           model: Database.Users,
           as: "user",
         },
