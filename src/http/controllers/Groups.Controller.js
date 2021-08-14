@@ -86,7 +86,7 @@ class GroupsController extends BaseController {
   modifyGroup = async (req, res, next) => {
     const data = await this.exec(
       next,
-      groupsPackage.updateItem,
+      groupsPackage.updateGroup,
       req.params.id,
       req.body
     );
