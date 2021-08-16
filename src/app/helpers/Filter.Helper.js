@@ -11,7 +11,12 @@ export default (params) => {
       key !== "page" &&
       key !== "pageSizeLimit"
     ) {
-      const value = JSON.parse(params[key]);
+      let value = null;
+      try {
+        value = JSON.parse(params[key]);
+      } catch (_) {
+        value = params[key];
+      }
 
       if (Array.isArray(value)) {
         Object.assign(filterObj, {
