@@ -84,8 +84,9 @@ export const authenticate = async ({ email, password }) => {
         }
       );
 
-      delete user.dataValues.password;
-      return Protocols.appResponse({ data: { token } });
+      return Protocols.appResponse({
+        data: { id: user.dataValues.id, token },
+      });
     } else {
       return Protocols.appResponse({ err: LocaleKeys.WRONG_CREDENTIALS });
     }
