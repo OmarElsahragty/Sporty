@@ -8,13 +8,19 @@ export default Object.freeze({
   SentryDNS: process.env.SENTRY_DNS,
 
   Database: {
-    Host: process.env.DATABASE_HOST,
-    Port: process.env.DATABASE_PORT * 1,
+    Host:
+      process.env.NODE_ENV === "Docker"
+        ? process.env.DOCKER_DATABASE_HOST
+        : process.env.DATABASE_HOST,
+    Port:
+      (process.env.NODE_ENV === "Docker"
+        ? process.env.DOCKER_DATABASE_PORT
+        : process.env.DATABASE_PORT) * 1,
     Name: process.env.DATABASE_NAME,
     Username: process.env.DATABASE_USERNAME,
     Password: process.env.DATABASE_PASSWORD,
 
-    Dialect: "postgres",
+    Dialect: process.env.DATABASE_DIALECT,
     Pool: {
       max: 5,
       min: 0,

@@ -7,6 +7,7 @@
   "scripts": {
     "start": "NODE_ENV=Production node -r esm .",
     "dev": "NODE_ENV=Development nodemon -r esm .",
+    "docker": "NODE_ENV=Docker node -r esm .",
     "init": "NODE_ENV=Initialization node -r esm ./scripts/Installation",
     "rest": "NODE_ENV=Rest node -r esm ./scripts/Installation",
     "lint": "eslint ."
