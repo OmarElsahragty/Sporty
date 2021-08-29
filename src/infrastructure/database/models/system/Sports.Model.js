@@ -18,6 +18,10 @@ export default (connection, DataTypes) =>
         type: DataTypes.STRING(100),
         allowNull: false,
       },
+      picture: {
+        type: DataTypes.STRING(1024),
+        allowNull: true,
+      },
     },
     {
       connection,

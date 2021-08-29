@@ -91,6 +91,7 @@ export default async (Database) => {
       {
         arabicName: "الإسكندرية",
         englishName: "Alexandria",
+        picture: null,
         Regions: [
           {
             arabicName: "الدخيلة",
@@ -225,6 +226,7 @@ export default async (Database) => {
       {
         arabicName: "أسوان",
         englishName: "Aswan",
+        picture: null,
         Regions: [
           { arabicName: "أَسْوان", englishName: "Aswan" },
           {
@@ -266,6 +268,7 @@ export default async (Database) => {
       {
         arabicName: "أسيوط",
         englishName: "Asyut",
+        picture: null,
         Regions: [
           { arabicName: "أسيوط", englishName: "Asyut" },
           {
@@ -295,6 +298,7 @@ export default async (Database) => {
       {
         arabicName: "البحيرة",
         englishName: "Beheira",
+        picture: null,
         Regions: [
           { arabicName: "دمنهور", englishName: "Damnhour" },
           {
@@ -353,6 +357,7 @@ export default async (Database) => {
       {
         arabicName: "بنى سويف",
         englishName: "Beni Suef",
+        picture: null,
         Regions: [
           {
             arabicName: "بني سويف",
@@ -382,6 +387,7 @@ export default async (Database) => {
       {
         arabicName: "القاهرة",
         englishName: "Cairo",
+        picture: null,
         Regions: [
           {
             arabicName: "حي الزيتون",
@@ -497,6 +503,7 @@ export default async (Database) => {
       {
         arabicName: "الدقهلية",
         englishName: "Dakahlia",
+        picture: null,
         Regions: [
           {
             arabicName: "المنصورة",
@@ -558,6 +565,7 @@ export default async (Database) => {
       {
         arabicName: "دمياط",
         englishName: "Damietta",
+        picture: null,
         Regions: [
           { arabicName: "دمياط", englishName: "Damietta" },
           {
@@ -596,6 +604,7 @@ export default async (Database) => {
       {
         arabicName: "الفيوم",
         englishName: "Faiyum",
+        picture: null,
         Regions: [
           { arabicName: "الفُيُّوم", englishName: "Faiyum" },
           {
@@ -618,6 +627,7 @@ export default async (Database) => {
       {
         arabicName: "الغربية",
         englishName: "Gharbia",
+        picture: null,
         Regions: [
           { arabicName: "طنْطَا", englishName: "Tanta" },
           {
@@ -641,6 +651,7 @@ export default async (Database) => {
       {
         arabicName: "الجيزة",
         englishName: "Giza",
+        picture: null,
         Regions: [
           {
             arabicName: "حي شمال",
@@ -700,6 +711,7 @@ export default async (Database) => {
       {
         arabicName: "الإسماعيلية",
         englishName: "Ismailia",
+        picture: null,
         Regions: [
           {
             arabicName: "الإسماعيلية",
@@ -731,6 +743,7 @@ export default async (Database) => {
       {
         arabicName: "كفر الشيخ",
         englishName: "Kafr El Sheikh",
+        picture: null,
         Regions: [
           {
             arabicName: "كفر الشيخ",
@@ -789,6 +802,7 @@ export default async (Database) => {
       {
         arabicName: "الأقصر",
         englishName: "Luxor",
+        picture: null,
         Regions: [
           { arabicName: "الأقصر", englishName: "Luxor" },
           {
@@ -816,6 +830,7 @@ export default async (Database) => {
       {
         arabicName: "مطروح",
         englishName: "Matruh",
+        picture: null,
         Regions: [
           {
             arabicName: "مَرْسَى مَطْرُوح",
@@ -850,6 +865,7 @@ export default async (Database) => {
       {
         arabicName: "المنيا",
         englishName: "Minya",
+        picture: null,
         Regions: [
           { arabicName: "المنيا", englishName: "Minya" },
           {
@@ -878,6 +894,7 @@ export default async (Database) => {
       {
         arabicName: "المنوفية",
         englishName: "Monufia",
+        picture: null,
         Regions: [
           {
             arabicName: "شِبين الكوم",
@@ -909,6 +926,7 @@ export default async (Database) => {
       {
         arabicName: "الوادي الجديد",
         englishName: "New Valley",
+        picture: null,
         Regions: [
           {
             arabicName: "الخَارْجَة",
@@ -926,6 +944,7 @@ export default async (Database) => {
       {
         arabicName: "شمال سيناء",
         englishName: "North Sinai",
+        picture: null,
         Regions: [
           {
             arabicName: "العريش",
@@ -950,6 +969,7 @@ export default async (Database) => {
       {
         arabicName: "بور سعيد",
         englishName: "Port Said",
+        picture: null,
         Regions: [
           {
             arabicName: "بورسعيد",
@@ -964,6 +984,7 @@ export default async (Database) => {
       {
         arabicName: "القليوبية",
         englishName: "Qalyubia",
+        picture: null,
         Regions: [
           { arabicName: "بنها", englishName: "Banha" },
           { arabicName: "قَلْيوب", englishName: "Qalyub" },
@@ -1002,6 +1023,7 @@ export default async (Database) => {
       {
         arabicName: "قنا",
         englishName: "Qena",
+        picture: null,
         Regions: [
           { arabicName: "قنا", englishName: "Qena" },
           {
@@ -1024,6 +1046,7 @@ export default async (Database) => {
       {
         arabicName: "البحر الأحمر",
         englishName: "Red Sea",
+        picture: null,
         Regions: [
           { arabicName: "الغردقة", englishName: "Hurghada" },
           {
@@ -1046,6 +1069,7 @@ export default async (Database) => {
       {
         arabicName: "الشرقية",
         englishName: "Sharqia",
+        picture: null,
         Regions: [
           {
             arabicName: "الزقازيق",
@@ -1116,6 +1140,7 @@ export default async (Database) => {
       {
         arabicName: "سوهاج",
         englishName: "Sohag",
+        picture: null,
         Regions: [
           { arabicName: "سوهاج", englishName: "Sohag" },
           {
@@ -1153,6 +1178,7 @@ export default async (Database) => {
       {
         arabicName: "جنوب سيناء",
         englishName: "South Sinai",
+        picture: null,
         Regions: [
           { arabicName: "الطور", englishName: "El Tor" },
           {
@@ -1186,6 +1212,7 @@ export default async (Database) => {
       {
         arabicName: "السويس",
         englishName: "Suez",
+        picture: null,
         Regions: [
           {
             arabicName: "حي السويس",
@@ -1219,35 +1246,48 @@ export default async (Database) => {
   // *                           SPORTS
   // **==========================================================================
   await Database.Sports.bulkCreate([
-    { arabicName: "كرة سلة", englishName: "Basketball" },
+    { arabicName: "كرة سلة", englishName: "Basketball", picture: null },
     {
       arabicName: "التسلق والمشي لمسافات طويلة",
       englishName: "Climbing and hiking",
+      picture: null,
     },
-    { arabicName: "كريكيت", englishName: "Cricket" },
-    { arabicName: "مشي", englishName: "Walking" },
-    { arabicName: "ركض", englishName: "Running" },
-    { arabicName: "تنس الريشة", englishName: "Badminton" },
-    { arabicName: "تنس طاولة", englishName: "Table tennis" },
-    { arabicName: "رفع أثقال", englishName: "Weightlifting" },
-    { arabicName: "الرماية", englishName: "Archery" },
-    { arabicName: "ركوب الدراجات", englishName: "Cycling" },
-    { arabicName: "ألعاب القوى", englishName: "Athletics" },
-    { arabicName: "يوجا", englishName: "Yoga" },
-    { arabicName: "مبارزة", englishName: "Fencing" },
-    { arabicName: "سباحة", englishName: "Swimming" },
-    { arabicName: "كرة القدم الأمريكية", englishName: "American Football" },
-    { arabicName: "قنون قتالية", englishName: "Martial arts" },
-    { arabicName: "كرة قدم", englishName: "Football" },
-    { arabicName: "تنس", englishName: "Tennis" },
-    { arabicName: "ملاكمة", englishName: "Boxing" },
-    { arabicName: "كرة اليد", englishName: "Handball" },
-    { arabicName: "كرة قدم حرة", englishName: "Freestyle football" },
-    { arabicName: "الهوكى الجليدى", englishName: "Ice hockey" },
-    { arabicName: "سكواش", englishName: "Squash" },
-    { arabicName: "رياضة التزحلق على الجليد", englishName: "Skating sports" },
-    { arabicName: "القفز بالمظلة", englishName: "Parachuting" },
-    { arabicName: "كروس فيت", englishName: "Crossfit" },
+    { arabicName: "كريكيت", englishName: "Cricket", picture: null },
+    { arabicName: "مشي", englishName: "Walking", picture: null },
+    { arabicName: "ركض", englishName: "Running", picture: null },
+    { arabicName: "تنس الريشة", englishName: "Badminton", picture: null },
+    { arabicName: "تنس طاولة", englishName: "Table tennis", picture: null },
+    { arabicName: "رفع أثقال", englishName: "Weightlifting", picture: null },
+    { arabicName: "الرماية", englishName: "Archery", picture: null },
+    { arabicName: "ركوب الدراجات", englishName: "Cycling", picture: null },
+    { arabicName: "ألعاب القوى", englishName: "Athletics", picture: null },
+    { arabicName: "يوجا", englishName: "Yoga", picture: null },
+    { arabicName: "مبارزة", englishName: "Fencing", picture: null },
+    { arabicName: "سباحة", englishName: "Swimming", picture: null },
+    {
+      arabicName: "كرة القدم الأمريكية",
+      englishName: "American Football",
+      picture: null,
+    },
+    { arabicName: "قنون قتالية", englishName: "Martial arts", picture: null },
+    { arabicName: "كرة قدم", englishName: "Football", picture: null },
+    { arabicName: "تنس", englishName: "Tennis", picture: null },
+    { arabicName: "ملاكمة", englishName: "Boxing", picture: null },
+    { arabicName: "كرة اليد", englishName: "Handball", picture: null },
+    {
+      arabicName: "كرة قدم حرة",
+      englishName: "Freestyle football",
+      picture: null,
+    },
+    { arabicName: "الهوكى الجليدى", englishName: "Ice hockey", picture: null },
+    { arabicName: "سكواش", englishName: "Squash", picture: null },
+    {
+      arabicName: "رياضة التزحلق على الجليد",
+      englishName: "Skating sports",
+      picture: null,
+    },
+    { arabicName: "القفز بالمظلة", englishName: "Parachuting", picture: null },
+    { arabicName: "كروس فيت", englishName: "Crossfit", picture: null },
   ]);
 
   // **==========================================================================
@@ -1255,10 +1295,6 @@ export default async (Database) => {
   // **==========================================================================
   await Database.Configurations.create({
     id: 1,
-    emailServiceHost: null,
-    EmailAddress: null,
-    EmailUsername: null,
-    EmailPassword: null,
     GroupDefaultRole: 1,
   });
 };
