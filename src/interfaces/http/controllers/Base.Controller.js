@@ -19,8 +19,11 @@ class BaseController {
     return data;
   }
 
-  okRes(_, res, data, statusCode = 200) {
-    return res.status(statusCode).json(data);
+  okRes(req, res, data, statusCode = 200) {
+    return res.status(statusCode).json({
+      message: req.t(LocaleKeys.OK),
+      data,
+    });
   }
 }
 
