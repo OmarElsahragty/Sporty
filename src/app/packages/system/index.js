@@ -1,11 +1,28 @@
 export {
   showConfigurations,
   updateConfigurations,
-  showItems,
-  showItem,
-  createItem,
-  updateItem,
-  deleteItem,
-} from "./System.Package";
+} from "./Configurations.Package";
 
-// export * as validation from "./System.Validator";
+export {
+  showCity,
+  showCites,
+  createCity,
+  modifyCity,
+  deleteCity,
+} from "./Cites.Package";
+
+export {
+  showRegion,
+  showRegions,
+  createRegion,
+  modifyRegion,
+  deleteRegion,
+} from "./Regions.Package";
+
+export {
+  showSport,
+  showSports,
+  createSport,
+  modifySport,
+  deleteSport,
+} from "./Sports.Package";

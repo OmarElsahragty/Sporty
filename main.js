@@ -1,5 +1,5 @@
-import { DatabaseConnection } from "./src/database";
-import Server from "./src/http/server";
+import { DatabaseConnection } from "./src/infrastructure/database";
+import Server from "./src/interfaces/http/server";
 import Config from "./config";
 
 export default () => {

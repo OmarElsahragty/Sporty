@@ -1,8 +1,8 @@
 import * as Sentry from "@sentry/node";
-import "@sentry/tracing";
 import Config from "./config";
 import Main from "./main";
-import "./colors";
+import "./TerminalColors";
+import "@sentry/tracing";
 
 Sentry.init({
   dsn: Config.SentryDNS,

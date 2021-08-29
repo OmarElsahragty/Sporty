@@ -3,7 +3,7 @@
   "and": "and",
   "server-error": "Oops! Something went wrong!",
 
-  "not-found": "We can't find the requested data!",
+  "no-data": "No data found",
 
   "forbidden": "Failed, Forbidden access",
   "unauthorized": "Failed, Unauthorized",

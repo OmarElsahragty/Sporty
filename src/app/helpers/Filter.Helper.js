@@ -4,17 +4,13 @@ export default (params) => {
   const filterObj = {};
 
   Object.keys(params).map((key) => {
-    if (
-      params[key] &&
-      params[key] !== "ASC" &&
-      params[key] !== "DESC" &&
-      key !== "page" &&
-      key !== "pageSizeLimit"
-    ) {
+    if (key !== "page" || key !== "pageSizeLimit") return;
+
+    if (params[key] && params[key] !== "ASC" && params[key] !== "DESC") {
       let value = null;
       try {
         value = JSON.parse(params[key]);
-      } catch (_) {
+      } catch {
         value = params[key];
       }
 

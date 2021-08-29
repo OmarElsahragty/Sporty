@@ -9,11 +9,11 @@ export const appResponse = ({ err, data }) => {
       },
       data: undefined,
     };
-  } else if (!data || data.length === 0 || data.count === 0) {
+  } else if (!data || data.count === 0 || data.length === 0) {
     return {
       err: {
         isAppError: true,
-        error: LocaleKeys.NOT_FOUND_404,
+        error: LocaleKeys.NO_DATA_404,
       },
       data: undefined,
     };

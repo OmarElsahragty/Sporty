@@ -15,5 +15,5 @@ Generate .env file using .env.example in docs.
 A step by step guide that will tell you how to get the development environment up and running.
 
 1. Install node dependencies ➡ `npm install`
-2. Initialization database ➡ `npm run init`
+2. Database migration ➡ `npm run migrate`
 3. Development run ➡ `npm run dev`

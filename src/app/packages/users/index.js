@@ -1,10 +1,3 @@
-export {
-  profile,
-  authenticate,
-  create,
-  update,
-  checkUser,
-  changePassword,
-} from "./Users.Package";
+export { login, registration, changePassword } from "./Auth.Package";
 
-export * as validation from "./User.Validator";
+export { profile, modify, checkUser } from "./Users.Package";
